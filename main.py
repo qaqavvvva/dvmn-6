@@ -3,9 +3,9 @@ import random
 from faker import Faker
 
 
-fake = Faker('ru_RU')
+FAKE = Faker('ru_RU')
 
-dict = {
+ALPHABET = {
     'а': 'а͠',
     'б': 'б̋',
     'в': 'в͒͠',
@@ -75,7 +75,7 @@ dict = {
     ' ': ' '
 }
 
-skills = [
+SKILLS = [
     'Стремительный прыжок',
     'Электрический выстрел',
     'Ледяной удар',
@@ -88,19 +88,19 @@ skills = [
 
 
 def create_template():
-    skills_choice = random.sample(skills, 3)
+    skills_choice = random.sample(SKILLS, 3)
     runic_skills = []
 
     for skill in skills_choice:
-        for letter, replacement in dict.items():
+        for letter, replacement in ALPHABET.items():
             skill = skill.replace(letter, replacement)
         runic_skills.append(skill)
 
     context = {
-        'first_name': fake.first_name(),
-        'last_name': fake.last_name(),
-        'town': fake.job(),
-        'job': fake.city(),
+        'first_name': FAKE.first_name(),
+        'last_name': FAKE.last_name(),
+        'town': FAKE.job(),
+        'job': FAKE.city(),
         'strength': str(random.randint(3, 18)),
         'agility': str(random.randint(3, 18)),
         'endurance': str(random.randint(3, 18)),
